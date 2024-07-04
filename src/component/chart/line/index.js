@@ -1,6 +1,6 @@
 import MyResponsiveLine from './line';
-import { data } from './data';
+import { initialData, getData } from './data';
 
-export { data };
+export { initialData, getData };
 
 export default MyResponsiveLine;
