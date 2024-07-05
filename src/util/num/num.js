@@ -1,3 +1,6 @@
+import * as d3 from "d3";
+
+
 function parsePercentageString(str) {
   return parseFloat(str.replace(/,/g, '.').replace('%', ''));
 }
@@ -25,4 +28,23 @@ function dft(array) {
   return complexArray;
 }
 
-export { parsePercentageString, dft };
+function groupByFrequency(numbers, n) {
+  // Count the frequency of each number
+  const frequencyCounts = d3.rollup(numbers, v => v.length, d => d);
+
+  // Convert the Map to an array of [number, frequency] pairs
+  const frequencyArray = Array.from(frequencyCounts, ([number, frequency]) => ({ number, frequency }));
+
+  // Sort the array by frequency in descending order
+  frequencyArray.sort((a, b) => b.frequency - a.frequency);
+
+  // Group the numbers into n groups
+  const groups = Array.from({ length: n }, () => []);
+  frequencyArray.forEach((item, index) => {
+      groups[index % n].push(item);
+  });
+
+  return groups;
+}
+
+export { parsePercentageString, dft, groupByFrequency};
