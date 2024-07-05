@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import MyResponsiveLine, { getSP500, getData } from "./component/chart/line";
+import MyResponsiveBar, { initialData } from "./component/chart/bar";
 import { parsePercentageString } from './util/num';
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
       {data && (
         <MyResponsiveLine data={data} />
       )}
+      <MyResponsiveBar data={initialData} />
     </div>
   );
 }

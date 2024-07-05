@@ -1,7 +1,7 @@
 import { ResponsiveLine } from '@nivo/line'
 
 const MyResponsiveLine = ({ data }) => (
-    <div style={{ height: '800px' }}>
+    <div style={{ height: '500px'}}>
         <ResponsiveLine
             data={data}
             margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
