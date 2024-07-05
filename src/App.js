@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import MyResponsiveLine, { initialData, getData } from "./component/chart/line";
+import { parsePercentageString } from './util/num';
 
 function App() {
   const [ data, setData ] = React.useState(initialData);
@@ -7,7 +8,9 @@ function App() {
   useEffect(() => {
     (async function() {
       const data =  await getData();
-      setData(data);
+
+      const list = data.map((item) => parsePercentageString(item["Изм. %"]))
+      setData(list);
     })();
   }, [setData]);
 
