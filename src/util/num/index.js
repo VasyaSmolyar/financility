@@ -1,3 +1,3 @@
-import { parsePercentageString } from './num';
+import { parsePercentageString, dft } from './num';
 
-export { parsePercentageString };
+export { parsePercentageString, dft };

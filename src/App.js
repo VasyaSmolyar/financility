@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import MyResponsiveLine, { getSP500, getData } from "./component/chart/line";
 import MyResponsiveBar, { initialData } from "./component/chart/bar";
-import { parsePercentageString } from './util/num';
+import { parsePercentageString, dft } from './util/num';
 
 function App() {
   const [ data, setData ] = React.useState();
@@ -10,13 +10,13 @@ function App() {
     (async function() {
       const data = await getData();
 
-      const list = data.map((item) => ({
-        x: item["Дата"],
-        y: parsePercentageString(item["Изм. %"])
-      }))
+      const list = data.map((item) => (parsePercentageString(item["Изм. %"])));
+      const rdft = dft(list);
 
-      const result = getSP500(list.slice(0, 30));
-
+      const result = getSP500(rdft.map((item) => ({
+        x: item.imag,
+        y: item.real,
+      })).slice(0, 30));
       setData(result);
     })();
   }, [setData]);
